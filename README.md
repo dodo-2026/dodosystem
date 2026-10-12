@@ -16,9 +16,31 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Local verification
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Use Node.js 24 or later for the tests that import TypeScript source directly.
+Install the lockfile-pinned dependencies without running package lifecycle scripts:
+
+```bash
+npm ci --ignore-scripts --no-audit --no-fund
+npm run typecheck
+npm run lint
+npm test
+NEXT_TELEMETRY_DISABLED=1 npm run build
+```
+
+These checks do not deploy the app or validate real guide login, SMS delivery,
+WeChat integration, or production database/storage access. The guide phone
+authentication and receipt acknowledgement services currently use injected
+persistence/delivery contracts; their live routes and adapters are not connected.
+
+### Staff session configuration
+
+Set `STAFF_SESSION_SECRET` to an unpredictable value of at least 32 characters.
+It is used only on the server to sign the staff login cookie. Changing it signs
+out every existing staff and owner session.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Learn More
 

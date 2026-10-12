@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Naily AiDOL",
-    short_name: "Naily AiDOL",
-    description: "ネイルサロン向け経営SaaS",
-    start_url: "/dashboard",
+    name: "DODO GUIDE OFFICE",
+    short_name: "DODO",
+    description: "ガイド管理・月次精算の事務アプリ",
+    start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
     theme_color: "#000000",

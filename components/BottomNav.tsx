@@ -4,32 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/dashboard", label: "ホーム", icon: "🏠" },
-  { href: "/customers", label: "顧客", icon: "👤" },
-  { href: "/reservations", label: "予約", icon: "📅" },
-  { href: "/visits", label: "来店", icon: "💅" },
-  { href: "/expenses", label: "経費", icon: "🧾" },
-  { href: "/finance", label: "収支", icon: "📊" },
-  { href: "/receivables", label: "未収", icon: "💰" },
-  { href: "/tax", label: "税理士", icon: "📩" },
+  { href: "/", label: "DODOホーム", icon: "🏠" },
 ];
 
 export default function BottomNav() {
   const pathname = usePathname();
 
-  const hiddenPaths = [
-    "/customer-intake",
-    "/customer-app",
-    "/owner-dashboard",
-  ];
+  const hiddenPaths = ["/login"];
 
   const shouldHide = hiddenPaths.some(
     (path) => pathname === path || pathname.startsWith(`${path}/`)
   );
 
-  async function handleStaffLogout() {
+  async function handleOfficeLogout() {
     try {
-      await fetch("/api/staff-login/logout", {
+      await fetch("/api/office-login/logout", {
         method: "POST",
       });
     } finally {
@@ -41,6 +30,7 @@ export default function BottomNav() {
 
   return (
     <nav
+      aria-label="DODO共通メニュー"
       className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white/95 backdrop-blur"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
@@ -48,17 +38,18 @@ export default function BottomNav() {
         className="mx-auto max-w-md"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(9, minmax(0, 1fr))",
+          gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
         }}
       >
         {navItems.map((item) => {
           const isActive =
-            pathname === item.href || pathname.startsWith(`${item.href}/`);
+            pathname === item.href;
 
           return (
             <Link
               key={item.href}
               href={item.href}
+              aria-current={isActive ? "page" : undefined}
               className={`flex min-h-[64px] flex-col items-center justify-center px-1 text-[11px] font-medium transition ${
                 isActive
                   ? "bg-orange-50 text-orange-500"
@@ -73,7 +64,7 @@ export default function BottomNav() {
 
         <button
           type="button"
-          onClick={handleStaffLogout}
+          onClick={handleOfficeLogout}
           className="flex min-h-[64px] flex-col items-center justify-center px-1 text-[11px] font-medium text-gray-500 transition hover:text-gray-800"
         >
           <span className="text-lg leading-none">🚪</span>

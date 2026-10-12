@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import BottomNavVisibility from "./components/BottomNavVisibility";
+import BottomNav from "@/components/BottomNav";
 
 export const metadata: Metadata = {
-  title: "Naily AiDOL",
-  description: "Naily AiDOL",
+  title: "DODO GUIDE OFFICE",
+  description: "ガイド管理・Excel取込・月次精算・支払書類を管理するDODO事務アプリ",
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="ja" suppressHydrationWarning>
       <body suppressHydrationWarning>
         {children}
-        <BottomNavVisibility />
+        <BottomNav />
       </body>
     </html>
   );

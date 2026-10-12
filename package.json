@@ -6,19 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --incremental false",
+    "test": "node --no-warnings --test tests/*.test.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.98.0",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^4.2.1",
     "next": "16.1.6",
-    "openai": "^6.33.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "recharts": "^3.8.1",
-    "resend": "^6.12.4",
-    "twilio": "^5.13.1"
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

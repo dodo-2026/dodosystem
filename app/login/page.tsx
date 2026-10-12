@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 
-export default function StaffLoginPage() {
+export default function OfficeLoginPage() {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function StaffLoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/staff-login/login", {
+      const res = await fetch("/api/office-login/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,13 +56,13 @@ export default function StaffLoginPage() {
         <div className="w-full rounded-[28px] border border-rose-100 bg-white p-6 shadow-sm">
           <div className="mb-6">
             <p className="text-xs font-bold tracking-[0.25em] text-rose-400">
-              NAILY AIDOL
+              DODO GUIDE OFFICE
             </p>
             <h1 className="mt-2 text-2xl font-bold text-slate-900">
-              スタッフログイン
+              社内ログイン
             </h1>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              スタッフページへ入るにはログインが必要です。
+              ガイド売上・精算の管理には、社内用IDでログインしてください。
             </p>
           </div>
 
@@ -76,7 +76,7 @@ export default function StaffLoginPage() {
                 value={loginId}
                 onChange={(e) => setLoginId(e.target.value)}
                 className="w-full rounded-2xl border border-rose-200 bg-white px-4 py-3"
-                placeholder="スタッフ用ID"
+                placeholder="社内用ID"
               />
             </div>
 

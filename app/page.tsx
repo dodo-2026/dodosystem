@@ -2,12 +2,20 @@ import Link from "next/link";
 
 const mainActions = [
   {
-    title: "Excel取込",
+    title: "CSV取込・精算書",
     description:
-      "免税店・取引先から届くExcelを取り込み、ガイド別の月次支払データを作成します。",
+      "CSV・TSVを確認し、作業ファイルを保存・再読込してガイド別精算書を出力します。",
     href: "/imports",
     icon: "📥",
-    status: "次に実装",
+    status: "確認版",
+  },
+  {
+    title: "ガイド専用ページ",
+    description:
+      "携帯認証後に、ご本人の精算書・受領証だけを確認するページです。",
+    href: "/guide",
+    icon: "📱",
+    status: "認証準備中",
   },
   {
     title: "ガイド管理",
@@ -36,10 +44,10 @@ const mainActions = [
   {
     title: "PDF書類",
     description:
-      "精算書・支払証明書・受領証・業務完了報告書をPDFで保管します。",
+      "精算書・受取書の架空データ印刷プレビューを確認します。実PDF保存は未接続です。",
     href: "/documents",
     icon: "📄",
-    status: "準備中",
+    status: "印刷プレビュー可",
   },
   {
     title: "業務完了報告",
@@ -53,7 +61,7 @@ const mainActions = [
 
 const workflowSteps = [
   "免税店・取引先からExcelを受領",
-  "Excelをアップロードして取込プレビュー",
+  "ExcelをCSV・TSVで保存して取込プレビュー",
   "ガイド番号・氏名・金額のエラー確認",
   "ガイド別に月次精算データを自動作成",
   "業務完了報告書にスマホサイン",
@@ -66,7 +74,7 @@ const summaryCards = [
   {
     label: "今月取込",
     value: "0件",
-    note: "Excel取込後に自動集計",
+    note: "保存機能の実装後に集計",
   },
   {
     label: "未振込",
@@ -87,7 +95,7 @@ const summaryCards = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-50 pb-[calc(5rem+env(safe-area-inset-bottom))]">
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         <section className="overflow-hidden rounded-3xl bg-slate-950 p-6 text-white shadow">
           <div className="text-xs font-bold tracking-[0.35em] text-slate-300">
@@ -113,7 +121,7 @@ export default function HomePage() {
                   href="/imports"
                   className="rounded-2xl bg-white px-5 py-3 text-sm font-bold text-slate-950"
                 >
-                  Excel取込を始める
+                  CSV取込・精算書を開く
                 </Link>
                 <Link
                   href="/payments"
@@ -228,8 +236,8 @@ export default function HomePage() {
             開発メモ
           </h2>
           <p className="mt-2 text-sm leading-7 text-amber-900">
-            現在はNaily AiDOLをベースにしたdodo事務アプリの初期トップ画面です。
-            次の実装で、Excel取込画面・ガイド管理・月次精算テーブル取得へ進みます。
+            CSV・TSVの取込確認、作業ファイルの保存・再読込、ガイド別精算書の印刷・PDF出力を確認版として利用できます。
+            共有DB登録・月会費計算・振込処理は未接続です。
           </p>
         </section>
       </div>
